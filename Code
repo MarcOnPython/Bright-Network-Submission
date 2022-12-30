@@ -1,0 +1,93 @@
+from matplotlib import pyplot as plt #import plotting module
+
+total1 = 5.61 + 72.5 + 135 + 124.5 + 149.5
+total2 = 145 + 82.5 + 107 + 147 + 181 + 44.5 + 70 + 162.5 + 136.5 + 54.5 + 158.5 + 190 + 59 + 158.5 + 197
+total3 = 25 + 5.99 + 28 + 91.97 + 72.99
+total4 = 30.25 + 36.38 
+total5 = 94.44 + 122.37 + 51.03 + 70.1 + 88.1 + 139.87 + 147.09 + 44.03 + 65.04 + 92.09 + 56.4 + 106.99 
+total6 = 12.99 + 12.99 + 12.99 + 12.99 + 12.99 + 12.99 
+total7 = 14.99 + 14.99 + 14.99 + 14.99
+total8 = 5.99 + 5.99 + 5.99 + 5.99 
+total9 = 80 
+total10 = 29.98 + 35 + 19.99
+total11 = 119.86 + 108.61 
+total12 = 49.99 + 49.99 + 69.97 + 49.99 + 69.98 + 19.99 + 59.98 + 79.98 + 49.99 + 99.98 + 129.97 + 29.99 + 99.98 + 49.99 + 79.98 + 99.98 
+total13 = 38.72 
+total14 = 9.94 
+total15 = 21.99 
+total16 = 99.99
+total17 = 49.99 
+total18 = 1.31 
+total19 = 10.75
+total20 = 2.43
+total21 = 6.8
+#Do the maths and set the variables
+
+
+#"H&M", "Loosley Fitted", "JD Sports", "JustEat", "Tesco Express", "Square Onix", "Blizzard", "Mojang Studios", "PetsAtHome", "Adidas", "Asda", "Collector Cave", "Selfridges", "Fitted Stitch", "Deliveroo", "Reebok", "Gamestation", "Amazon", "KingsArms", "Revalla", "FullOfBeans"
+x = ["H&M", "LF", "JDS", "JE", "TE", "SO", "B", "MS", "PAH", "ADAS", "A", "CC", "S", "FS", "D", "R", "GS", "AMZN", "KA", "R", "FOB"]
+h = [total1,total2,total3,total4,total5,total6,total7,total8,total9,total10,total11,total12,total13,total14,total15,total16,total17,total18,total19,total20,total21]
+#create the list for the header of each bar (x) and the height of each bar (h)
+ask = raw_input("Would you like to add, remove or view the bar chart? (A/R/V)? ")
+#interface, user can choose what they'd like to do
+if len(ask) != 1:
+    print("Plotting graph....")
+else:
+    while ask.upper() == "A":
+        add_x = raw_input("Enter location name (3 chars max) ")
+        #user chooses header for the bar they are creating
+        if len(add_x) > 3:
+            print("ERROR, plotting graph....")
+            break
+        elif len(add_x) < 1:
+            print("ERROR, plotting graph....")
+            break
+        #if the potential header is too long or short the graph is plotted
+        else:
+            caps = str(add_x)
+            x.append(caps.upper())
+            #adds the new header to the list (x)
+            add_h = raw_input("Enter total spending figure ")
+            #user gives the figure
+            if int(add_h) < 1:
+                print("ERROR, plotting graph....")
+                break
+            #if the figure is below 1 the graph is plotted without the new bar
+            else:
+                h.append(int(add_h))
+                print("Plotting graph....")
+                break
+            #new height is added to the figures list (h) and graph is plotted
+
+    while ask.upper() == "R":
+        removeb = raw_input("Which bar would you like to remove? ")
+        if len(removeb) > 3:
+            print("ERROR, plotting graph....")
+            break
+        elif len(removeb) < 1:
+            print("ERROR, plotting graph....")
+            break
+        else:
+            indexnum = x.index(str(removeb))
+            x.pop(indexnum)
+            h.pop(indexnum)
+            print("Plotting graph....")
+            break
+        
+
+    while ask.upper() == "V":
+        print("Plotting graph....")
+        break
+    #loop breaks immediately so graph can be plotted for "view"
+
+
+pos = range(len(h))
+plt.bar(pos,h)
+plt.xticks(pos, x)
+#height and header lists are used to plot the graph
+plt.xlabel("Third Party Name")
+plt.ylabel("Total Spending Done")
+plt.title("Total Spending by Third Party")
+#x and y axis are labelled and the graph is given a title
+plt.show()
+#graph is shown
